@@ -1,13 +1,9 @@
 n = int(input())
-a = []
 snowman = []
-for i in range(0, n):
-    x = int(input())
-    a.append(x)
+all_snowman = {}
+a = list(map(int, input().split()))
 a.sort()
-print(n)
-print(a)
-f = 0
+count = 0
 l = n // 3
 for j in range(0, l):
     i = 0
@@ -24,9 +20,12 @@ for j in range(0, l):
                     a[i] = 0
                 if len(snowman) == 3:
                     snowman.sort()
-                    print(snowman)
-                    snowman.clear()
                     i -= 1
-                    f += 1
+                    count += 1
+                    all_snowman[count] = snowman
+                    snowman = []
             i += 1
-print(f)
+print(count)
+for i in range(1, count + 1):
+    answer = map(str, all_snowman[i])
+    print(' '.join(answer))
